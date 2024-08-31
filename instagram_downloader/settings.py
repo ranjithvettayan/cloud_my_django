@@ -130,10 +130,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://ranjithvettayan.github.io",
-    "http://192.168.0.116:8000"  # Replace with your production URL if applicable
+    "http://192.168.0.116:8000",
+    "https://insta_scarp.onrender.com" 
 ]
 CORS_ALLOW_ALL_ORIGINS = True
-ALLOWED_HOSTS = ['192.168.0.116', 'localhost', '127.0.0.1', '115.97.158.155', 'insta_scarp.render.com']
+ALLOWED_HOSTS = ['192.168.0.116', 'localhost', '127.0.0.1', '115.97.158.155', 'insta_scarp.onrender.com']
 
 # Security settings for production
 CSRF_COOKIE_SECURE = True
