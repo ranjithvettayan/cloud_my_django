@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 import instaloader
 import requests
 import re
+import base64
 import zipfile
 import io
 
@@ -57,8 +58,8 @@ def download_post(request):
                     media_urls.append(node.video_url)
                 else:
                     media_urls.append(node.display_url)
-            # Return media URLs individually
-            return JsonResponse({'media_files': media_urls})
+            # Return media URLs with content
+            return download_multiple_media(media_urls)
         elif post.is_video:
             return download_media(post.video_url)
         elif post.typename == "GraphImage":
@@ -113,21 +114,24 @@ def download_media(media_url):
 
 def download_multiple_media(media_urls):
     try:
-        # Create an in-memory zip file
-        memory_file = io.BytesIO()
-        with zipfile.ZipFile(memory_file, 'w') as zf:
-            for media_url in media_urls:
-                response = requests.get(media_url, stream=True)
-                response.raise_for_status()
+        # Create an array to store media files and their content
+        media_files = []
+        
+        for media_url in media_urls:
+            response = requests.get(media_url, stream=True)
+            response.raise_for_status()
+            content_type = response.headers.get('Content-Type', 'application/octet-stream')
+            response_content = response.content  # Get the raw content
 
-                # Extract filename from the URL and add to the zip file
-                filename = media_url.split("/")[-1]
-                zf.writestr(filename, response.content)
+            base64_encoded_content = base64.b64encode(response_content).decode('ascii')
+            media_data = {
+                'url': media_url,
+                'content': base64_encoded_content,
+                'content_type': content_type
+            }
+            media_files.append(media_data)
 
-        # Set the appropriate headers for the zip file download
-        response = HttpResponse(memory_file.getvalue(), content_type='application/zip')
-        response['Content-Disposition'] = 'attachment; filename="media_files.zip"'
-        return response
-
+        # Return the media files and their content in a JSON response
+        return JsonResponse({'media_files': media_files})
     except requests.RequestException as e:
-        return JsonResponse({'error': str(e)})
+        return JsonResponse({'error': str(e)}) 
