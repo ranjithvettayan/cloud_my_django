@@ -1,1 +1,1 @@
-web: gunicorn instagram_downloader.wsgi:application
+web: gunicorn instagram_downloader.wsgi:application --timeout 120
