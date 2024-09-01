@@ -11,8 +11,6 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-y*ye-h2n9^-bggd&pu6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['192.168.0.116', 'localhost', '127.0.0.1', 'your_deployed_domain.com']
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -91,7 +89,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://insta-scarp.onrender.com"
 ]
 CORS_ALLOW_ALL_ORIGINS = True
-ALLOWED_HOSTS = ['192.168.0.116', 'localhost', '127.0.0.1', '115.97.158.155', 'insta_scarp.onrender.com', 'insta-scarp.onrender.com']
+ALLOWED_HOSTS = ['192.168.0.116', 'localhost', '127.0.0.1', '115.97.158.155', 'insta_scarp.onrender.com', 'insta-scarp.onrender.com', '.vercel.app']
 
 
 # Instagram Credentials for Local Development (not secure)
