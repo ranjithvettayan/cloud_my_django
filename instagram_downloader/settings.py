@@ -133,7 +133,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://ranjithvettayan.github.io",
     "http://192.168.0.116:8000",
     "https://insta_scarp.onrender.com",
-    "https://insta-scarp.onrender.com"
+    "https://insta-scarp.onrender.com",
+    "https://web-production-cda0.up.railway.app"
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 ALLOWED_HOSTS = ['192.168.0.116', 'localhost', '127.0.0.1', '115.97.158.155', 'insta_scarp.onrender.com', 'insta-scarp.onrender.com', 'ranjithvettayan.github.com']
