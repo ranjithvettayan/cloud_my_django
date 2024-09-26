@@ -117,7 +117,8 @@ ALLOWED_HOSTS = [
     '115.97.158.155',
     'insta_scarp.onrender.com',
     'insta-scarp.onrender.com',
-    'ranjithvettayan.github.com'
+    'ranjithvettayan.github.com',
+    'web-production-cda0.up.railway.app'
 ]
 
 # Security settings for production
